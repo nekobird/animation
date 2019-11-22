@@ -1,19 +1,52 @@
 {
   "name": "@nekobird/animation",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "private": false,
+  "description": "Animation library.",
+  "keywords": [
+    "animation",
+    "nekobird"
+  ],
+  "homepage": "https://github.com/nekobird/animation#readme",
+  "bugs": {
+    "url": "https://github.com/nekobird/animation/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nekobird/animation.git"
   },
+  "license": "MIT",
   "author": "Andrew Prasetya",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nekobird/animation/issues"
+  "files": [
+    "build/**/*"
+  ],
+  "sideEffects": false,
+  "main": "build/commonjs/animation.js",
+  "module": "build/esm/animation.js",
+  "jsnext:main": "build/esm/animation.js",
+  "scripts": {
+    "build": "npm run clean; tsc --emitDeclarationOnly --outDir build/types/; rollup -c rollup.config.js",
+    "clean": "rimraf build",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/nekobird/animation#readme"
+  "dependencies": {
+    "@nekobird/piko": "0.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-typescript": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "rimraf": "^3.0.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

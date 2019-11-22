@@ -1,1 +1,3 @@
-# Animation
+# 🐰 Animation
+
+`npm i @nekobird/animation`

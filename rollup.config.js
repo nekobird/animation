@@ -1,19 +1,14 @@
-import typescript from 'rollup-plugin-typescript';
-
-import babel from 'rollup-plugin-babel';
-
-import commonjs from 'rollup-plugin-commonjs';
-
-import alias from '@rollup/plugin-alias';
 import resolve from 'rollup-plugin-node-resolve';
+import typescript from 'rollup-plugin-typescript';
+import babel from 'rollup-plugin-babel';
+import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
-import { terser } from 'rollup-plugin-terser';
 
 const extensions = ['.js', '.ts'];
 
 export default {
-  input: 'source/animation.ts',
+  input: 'source/index.ts',
   output: [
     {
       file: pkg.main,
@@ -31,17 +26,17 @@ export default {
     },
   ],
   plugins: [
-
-    // Compile TypeScript Files.
+    resolve({
+      mainFields: [
+        'module',
+        'jsnext',
+        'main'
+      ],
+      extensions,
+    }),
     typescript({
       exclude: 'node_modules/**',
     }),
-
-    resolve({
-      mainFields: ['module', 'jsnext'],
-      extensions,
-    }),
-
     babel({
       exclude: 'node_modules/**',
       extensions,

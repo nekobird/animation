@@ -2,7 +2,7 @@ import {
   clamp,
   getSign,
   transform,
-} from './util';
+} from '@nekobird/piko';
 
 import {
   AnimationConfig
